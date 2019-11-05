@@ -78,15 +78,9 @@ def blur_video(cap):
                 flags = cv2.CASCADE_SCALE_IMAGE)
         # Draw the rectangle around each face
             for (x, y, w, h) in faces:
-                sizeKN = rd.randint(25,30)
-                i = sizeKN-1
-                while i>=0:
-                    if y-i & y+h+i<frame_height-1:
-                        if x-w >=0 & x+w+i < frame_width -1:
-                            img[y-i:y+h+i,x-i:x+w+i] = cv2.blur(img[y-i:y+h+i,x-i:x+w+i],(sizeKN-i,sizeKN-i))
+                sizeKN = min(int(w/10),int(h/10))
+                img[y:y+h,x:x+w] = cv2.blur(img[y:y+h,x:x+w],(sizeKN,sizeKN))
 
-                    img[y:y+h,x:x+w] = cv2.blur(img[y:y+h,x:x+w],(sizeKN,sizeKN))
-                    i=i-1
             #img[y:y+h,x:x+w] = cv2.blur(img[y:y+h,x:x+w],(27,27))
             out.write(img)
         #cv2.rectangle(img, (x, y), (x+w, y+h), (255, 0, 0), 2)

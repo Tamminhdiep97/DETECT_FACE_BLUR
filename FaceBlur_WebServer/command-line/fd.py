@@ -52,7 +52,7 @@ for (x, y, w, h) in faces:
             if x-w >=0 & x+w+i < width -1:
                 image[y-i:y+h+i,x-i:x+w+i] = cv2.blur(image[y-i:y+h+i,x-i:x+w+i],(sizeKN-i,sizeKN-i))
         i=i-1
-    #image[y:y+h,x:x+w] = cv2.blur(image[y:y+h,x:x+w],(sizeKN,sizeKN))
+    image[y:y+h,x:x+w] = cv2.blur(image[y:y+h,x:x+w],(sizeKN,sizeKN))
     #image = cv2.rectangle(image,(x,y),(x+w,y+h),(255,0,0),1)
 end_time = time.time()
 dur=str((end_time - start_time))
